@@ -1,11 +1,16 @@
 public class Animal {
     final String species;
     String name;
-    Integer weight;
+    Double weight;
     Boolean isAlive;
     Animal(String species){
         this.isAlive = true;
         this.species = species;
+        if (this.species == "tiger"){
+            this.weight = 80.0;
+        } else if (this.species == "bear") {
+            this.weight = 450.0;
+        }
     }
 
     void feed(){
@@ -36,5 +41,8 @@ public class Animal {
             System.out.println("HAAALOO POLICJA!!");
         }
 
+    }
+    public String toString(){
+        return species+ " "+ name + " " + weight;
     }
 }

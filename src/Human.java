@@ -1,14 +1,20 @@
 import devices.Car;
 import devices.Phone;
 
-public class Human {
+public class Human extends Animal{
     String firstName;
     String lastName;
     Animal pet;
     Integer yearOfBirth;
+
     private Car car;
     Phone phone;
     private Double salary;
+
+    public Human() {
+        super("homo sapiens");
+        this.salary = 0.0;
+    }
 
     public Double getSalary() {
         System.out.println("Dane byly pobierane wczoraj");

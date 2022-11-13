@@ -24,7 +24,7 @@ public class Animal {
             System.out.println("Kot został wskrzeszony.");
         } else{
             weight += 50;
-            System.out.println("Ty zły człowieku czemu nie nakarmiłeś kota?");
+            System.out.println("Ty zły człowieku czemu nie nakarmiłeś kota?.");
         }
     }
     void takeForAWalk()

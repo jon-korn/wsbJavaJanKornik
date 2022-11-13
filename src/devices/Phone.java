@@ -1,18 +1,18 @@
 package devices;
 
-public class Phone {
-    final String model;
-    final String producer;
+
+public class Phone extends Device {
+
     String color;
-
-
-
-    public Phone(String model, String producer) {
-        this.model = model;
-        this.producer = producer;
+    public Phone(String model, String producer, Integer yearOfproduction){
+        super(model,producer,yearOfproduction);
     }
-
     public String toString() {
         return model+ " "+ producer;
     }
+
+    public void turnOn(){
+        System.out.println("Siuuumm dziala");
+    }
+
 }

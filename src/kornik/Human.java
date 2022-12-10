@@ -1,18 +1,23 @@
-import devices.Car;
-import devices.Phone;
+package kornik;
 
-public class Human extends Animal{
+import kornik.creatures.Animal;
+import kornik.creatures.Pet;
+import kornik.devices.Car;
+import kornik.devices.Phone;
+
+public class Human {
     String firstName;
     String lastName;
-    Animal pet;
+    public Animal pet;
     Integer yearOfBirth;
 
     private Car car;
-    Phone phone;
+    public Phone phone;
     private Double salary;
+    public Double cash;
 
     public Human() {
-        super("homo sapiens");
+        ;
         this.salary = 0.0;
     }
 
@@ -51,4 +56,8 @@ public class Human extends Animal{
     public String toString() {
         return firstName;
     }
+    public void sellable(Human seller, Human buyer, Double price) {
+        System.out.println("Naura");
+    }
+
 }

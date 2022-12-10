@@ -1,7 +1,7 @@
-package devices;
-import java.util.concurrent.TimeUnit;
-
-public abstract class Device {
+package kornik.devices;
+import kornik.Human;
+import kornik.Salleable;
+public abstract class Device  {
     final String model;
     final String producer;
     final Integer yearOfProduction;

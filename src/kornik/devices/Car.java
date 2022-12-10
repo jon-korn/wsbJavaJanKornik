@@ -1,6 +1,8 @@
-package devices;
+package kornik.devices;
 
-public class Car extends Device {
+import kornik.Human;
+
+public abstract class Car extends Device {
 
     String color;
     Integer numberOfCrashes;
@@ -19,4 +21,8 @@ public class Car extends Device {
     public void turnOn() {
         System.out.println("Odpalamy WUUUTTT TUTUTUTUUTUUU");
     }
+
+    public abstract void refuel();
+
+
 }

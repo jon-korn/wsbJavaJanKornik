@@ -1,19 +1,11 @@
-public class Animal {
-    final String species;
-    String name;
-    Double weight;
-    Boolean isAlive;
-    Animal(String species){
-        this.isAlive = true;
-        this.species = species;
-        if (this.species == "tiger"){
-            this.weight = 80.0;
-        } else if (this.species == "bear") {
-            this.weight = 450.0;
-        }
-    }
+package kornik.creatures;
 
-    void feed(){
+public interface Feedable {
+
+    abstract void feed();
+    abstract void feed(Integer foodWeight);
+
+    /*void feed(foodWeight){
         if (isAlive) {
             weight += 50;
             System.out.println("Dzięki za żarcie");
@@ -26,8 +18,11 @@ public class Animal {
             weight += 50;
             System.out.println("Ty zły człowieku czemu nie nakarmiłeś kota?.");
         }
-    }
-    void takeForAWalk()
+    }*/
+
+
+
+    /*void takeForAWalk()
     {
         if (isAlive){
             weight-=50;
@@ -41,8 +36,5 @@ public class Animal {
             System.out.println("HAAALOO POLICJA!!");
         }
 
-    }
-    public String toString(){
-        return species+ " "+ name + " " + weight;
-    }
+    }*/
 }

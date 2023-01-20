@@ -46,7 +46,7 @@ public abstract class Animal implements Feedable, Salleable{
     }
 
     public void sellable(Human seller, Human buyer, Double price) {
-        if (seller.pet != this) {
+        if (seller.pet != this || seller.pet == null) {
             System.out.println("Nie możesz sprzedawać nie swoich zwierzat");
         } else if (buyer.cash < price) {
             System.out.println("Nie masz kasy");

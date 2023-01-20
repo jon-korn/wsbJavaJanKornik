@@ -11,10 +11,10 @@ public class Human {
     public Animal pet;
     Integer yearOfBirth;
 
-    private Car car;
+    public Car car;
     public Phone phone;
     private Double salary;
-    public Double cash;
+    public Double cash = 400.0;
 
     public Human() {
         ;

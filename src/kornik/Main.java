@@ -9,20 +9,24 @@ public class Main {
 
         Pet pet = new Pet("Kot");
         Human Jaś = new Human();
+        Human Kornik = new Human();
+        LPGCar krolWsi = new LPGCar("Polonez","FSO",1234);
+        Kornik.car = krolWsi;
         Jaś.pet = pet;
-        Jaś.pet.takeForAWalk();
+        Jaś.cash += 5000.0;
+        Kornik.cash += 400.0;
 
-        Phone phone = new Phone("nowy","wsb",2022);
-        phone.installAnnApp();
+        System.out.println(Kornik.cash+ " Przed jakim kolwiek handlem");
+        Jaś.sellable(Jaś, Kornik,200.0);
 
-        ElectricCar tesla = new ElectricCar("tesla","tes",2022);
-        DiselCar disel = new DiselCar("tesla","tes",2022);
-        LPGCar lPG = new LPGCar("tesla","tes",2022);
-        disel.refuel();
-        lPG.refuel();
-        tesla.refuel();
-        CarWash niezbedna = new CarWash();
-        niezbedna.wash(tesla);
+        System.out.println(Kornik.cash+" Po handlu człowiekiem");
+
+        Kornik.car.sellable(Kornik, Jaś, 4000.0);
+        System.out.println(Kornik.cash+" Po zakupie kota i sprzedaniu auta");
+
+        System.out.println(Kornik.pet);
+
+
 
     }
 

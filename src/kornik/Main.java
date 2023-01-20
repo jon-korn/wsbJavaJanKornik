@@ -1,8 +1,6 @@
 package kornik;
 
-import kornik.devices.CarWash;
-import kornik.devices.ElectricCar;
-import kornik.devices.Phone;
+import kornik.devices.*;
 import kornik.creatures.Pet;
 
 public class Main {
@@ -18,6 +16,10 @@ public class Main {
         phone.installAnnApp();
 
         ElectricCar tesla = new ElectricCar("tesla","tes",2022);
+        DiselCar disel = new DiselCar("tesla","tes",2022);
+        LPGCar lPG = new LPGCar("tesla","tes",2022);
+        disel.refuel();
+        lPG.refuel();
         tesla.refuel();
         CarWash niezbedna = new CarWash();
         niezbedna.wash(tesla);

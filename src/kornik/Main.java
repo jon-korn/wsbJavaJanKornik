@@ -3,28 +3,38 @@ package kornik;
 import kornik.devices.*;
 import kornik.creatures.Pet;
 
+import java.util.Arrays;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
 
-        Pet pet = new Pet("Kot");
-        Human Jaś = new Human();
-        Human Kornik = new Human();
-        LPGCar krolWsi = new LPGCar("Polonez","FSO",1234);
-        Kornik.car = krolWsi;
-        Jaś.pet = pet;
-        Jaś.cash += 5000.0;
-        Kornik.cash += 400.0;
 
-        System.out.println(Kornik.cash+ " Przed jakim kolwiek handlem");
-        Jaś.sellable(Jaś, Kornik,200.0);
+        Human kornik = new Human("Justyun","Bambo",123,2331,12333,8);
+        Human blaszak = new Human("kamil", "blasza",112,2222,222222,3);
+        LPGCar automobil = new LPGCar("kysz","adsada",1999, 20);
+        LPGCar automobil2 = new LPGCar("asiema","adsada",2002, 20);
+        LPGCar automobil3 = new LPGCar("asd","adsada",2006, 20);
+        LPGCar automobil4 = new LPGCar("asieaddma","adsada",1902, 20);
+        LPGCar automobil5 = new LPGCar("asiddsssssssema","adsada",2, 20);
+        kornik.setCar(automobil,0);
+        kornik.setCar(automobil2,1);
+        kornik.setCar(automobil3,2);
+        kornik.setCar(automobil4,3);
+        kornik.setCar(automobil5,4);
 
-        System.out.println(Kornik.cash+" Po handlu człowiekiem");
+        kornik.getCar(2).sell(kornik,blaszak,230);
 
-        Kornik.car.sellable(Kornik, Jaś, 4000.0);
-        System.out.println(Kornik.cash+" Po zakupie kota i sprzedaniu auta");
+        kornik.carsValue();
+        System.out.println(kornik);
+         kornik.sortYourGarage();
+        System.out.println(kornik);
 
-        System.out.println(Kornik.pet);
+
+
+
+
+
 
 
 

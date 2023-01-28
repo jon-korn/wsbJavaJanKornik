@@ -3,30 +3,53 @@ package kornik;
 import kornik.creatures.Animal;
 import kornik.creatures.Pet;
 import kornik.devices.Car;
+import kornik.devices.LPGCar;
 import kornik.devices.Phone;
 
+import java.nio.DoubleBuffer;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class Human {
+    public Car car;
     String firstName;
     String lastName;
     public Animal pet;
     Integer yearOfBirth;
-
-    public Car car;
     public Phone phone;
-    private Double salary;
-    public Double cash = 400.0;
+    private double salary = 50;
+    public double cash = 400.0;
 
-    public Human() {
-        ;
-        this.salary = 0.0;
+    private int DEF_GARAGE_SIZE = 1;
+    private Car[] garage;
+
+    public Human(String firstName, String lastName, Integer yearOfBirth, double salary, double cash) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.yearOfBirth = yearOfBirth;
+        this.salary = salary;
+        this.cash = cash;
+        garage = new Car[DEF_GARAGE_SIZE];
+        setDefaultCar();
     }
 
-    public Double getSalary() {
+    public Human(String firstName, String lastName, Integer yearOfBirth, double salary, double cash, int garageSize) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.yearOfBirth = yearOfBirth;
+        this.salary = salary;
+        this.cash = cash;
+        garage = new Car[garageSize];
+        setDefaultCar();
+    }
+
+    public double getSalary() {
         System.out.println("Dane byly pobierane wczoraj");
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(double salary) {
         if (salary < 0) {
             System.out.println("Złodzieju nie będę płacił za to że pracuję.");
         } else {
@@ -36,28 +59,131 @@ public class Human {
         }
     }
 
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car, Double salary) {
-        if (this.salary > car.prize) {
-            System.out.println("Udało się kupć samochód za gotówkę.");
-            this.car = car;
-        } else if (salary > 1 / 12 *car.prize) {
-            System.out.println("Automobil zostal kupiony na kredyt. W przyszłości polecamy rower");
-            this.car = car;
+    public Car getCar(int position) {
+        if (position < garage.length && position >= 0) {
+            System.out.println(garage[position]);
+            return garage[position];
         } else {
-            System.out.println("Chłopie weź się za naukę, bo auta to na pewno nie kupisz.");
+            System.out.println("Pozycja sie nie zgadza.");
+            return null;
         }
-
     }
 
+    public void setCar(Car car, int position) {
+        if (position < garage.length && position >= 0) {
+            Car temp = garage[position];
+            if (garage[position] != null && salary > car.getPrice()) {
+                System.out.println("Udało się kupić automobil lecz poprzedni został wyrzucony na bruk i stracony");
+                this.garage[position] = car;
+            } else if (garage[position] == null && salary > car.getPrice()) {
+                System.out.println("Udało się kupć samochód za gotówkę.");
+                this.garage[position] = car;
+            } else if (garage[position] == null && salary > 1 / 12 * car.getPrice()) {
+                System.out.println("Automobil zostal kupiony na kredyt. W przyszłości polecamy rower");
+                this.garage[position] = car;
+            } else {
+                System.out.println("Nie udało się dodać auta.");
+            }
+        } else {
+            System.out.println("Pozycja garażu się nie zgadza");
+        }
+    }
+
+
+    @Override
     public String toString() {
-        return firstName;
+        return "Human{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", pet=" + pet +
+                ", yearOfBirth=" + yearOfBirth +
+                ", phone=" + phone +
+                ", salary=" + salary +
+                ", cash=" + cash +
+                ", DEF_GARAGE_SIZE=" + DEF_GARAGE_SIZE +
+                ", garage=" + Arrays.toString(garage) +
+                '}';
     }
-    public void sellable(Human seller, Human buyer, Double price) {
+
+    public void sellable(Human seller, Human buyer, double price) {
         System.out.println("Naura");
     }
+
+    public double carsValue() {
+        double suma = 0.0;
+        for (int i = 0; i <= garage.length; i++) {
+            try {
+                suma += garage[i].getvalue();
+            } catch (Exception ArrayIndexOutOfBoundsException) {
+                break;
+            }
+        }
+        System.out.println("Wartość twoich pojazdów wynosi: " + suma);
+        return suma;
+    }
+
+    public void sortYourGarage() {
+        for (int i = 0; i < garage.length; i++) {
+            for (int j = 0; j < garage.length; j++) {
+                Car temp;
+                if (garage[i] != null && garage[j] != null && garage[i].getyear() < garage[j].getyear()) {
+                    temp = garage[i];
+                    garage[i] = garage[j];
+                    garage[j] = temp;
+                }
+            }
+        }
+
+
+        //Arrays.sort(garage,Comparator.comparingInt(Car::getyear));
+        System.out.println("Garaż został posortowany");
+    }
+
+    private void setDefaultCar() {
+        if (garage.length > 0 && garage[0] == null) {
+            garage[0] = new LPGCar("Fiat126p", "Fiat", 2000, 20.0);
+        }
+    }
+
+    public Car[] getGarage() {
+        return garage;
+    }
+
+    public boolean hasACar(Car car) {
+        for (Car value : garage) {
+            if (value == car) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasFreeSpace() {
+        for (Car car : garage) {
+            if (car == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addCar(Car car) {
+        for (int i = 0; i < garage.length; i++) {
+            if (garage[i] == null) {
+                garage[i] = car;
+                return;
+            }
+        }
+    }
+
+    public void removeCar(Car car) {
+        for (int i = 0; i < garage.length; i++) {
+            if (garage[i] == car) {
+                garage[i] = null;
+                return;
+            }
+        }
+    }
+
 
 }

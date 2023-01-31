@@ -61,7 +61,6 @@ public class Human {
 
     public Car getCar(int position) {
         if (position < garage.length && position >= 0) {
-            System.out.println(garage[position]);
             return garage[position];
         } else {
             System.out.println("Pozycja sie nie zgadza.");
@@ -75,12 +74,15 @@ public class Human {
             if (garage[position] != null && salary > car.getPrice()) {
                 System.out.println("Udało się kupić automobil lecz poprzedni został wyrzucony na bruk i stracony");
                 this.garage[position] = car;
+                car.setOwner(this);
             } else if (garage[position] == null && salary > car.getPrice()) {
                 System.out.println("Udało się kupć samochód za gotówkę.");
                 this.garage[position] = car;
+                car.setOwner(this);
             } else if (garage[position] == null && salary > 1 / 12 * car.getPrice()) {
                 System.out.println("Automobil zostal kupiony na kredyt. W przyszłości polecamy rower");
                 this.garage[position] = car;
+                car.setOwner(this);
             } else {
                 System.out.println("Nie udało się dodać auta.");
             }
@@ -95,13 +97,7 @@ public class Human {
         return "Human{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", pet=" + pet +
-                ", yearOfBirth=" + yearOfBirth +
-                ", phone=" + phone +
-                ", salary=" + salary +
-                ", cash=" + cash +
-                ", DEF_GARAGE_SIZE=" + DEF_GARAGE_SIZE +
-                ", garage=" + Arrays.toString(garage) +
+                "garage=" + Arrays.toString(garage) +
                 '}';
     }
 
@@ -142,6 +138,7 @@ public class Human {
     private void setDefaultCar() {
         if (garage.length > 0 && garage[0] == null) {
             garage[0] = new LPGCar("Fiat126p", "Fiat", 2000, 20.0);
+            garage[0].setOwner(this);
         }
     }
 
@@ -171,6 +168,7 @@ public class Human {
         for (int i = 0; i < garage.length; i++) {
             if (garage[i] == null) {
                 garage[i] = car;
+                car.setOwner(this);
                 return;
             }
         }

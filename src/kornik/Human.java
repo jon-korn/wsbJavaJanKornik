@@ -18,7 +18,7 @@ public class Human {
     public Animal pet;
     Integer yearOfBirth;
     public Phone phone;
-    private double salary = 50;
+    private double salary = 5000;
     public double cash = 400.0;
 
     private int DEF_GARAGE_SIZE = 1;
@@ -182,6 +182,7 @@ public class Human {
             }
         }
     }
+
 
 
 }

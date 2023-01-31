@@ -8,34 +8,26 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) throws Exception {
 
+        Human kornik = new Human("kornik","Kornik",2002,10900,20000);
+        Human kamil = new Human("Kamil","Kamil",1999,12013,12310);
+        kornik.phone = new Phone("galaxy","samsung",1999,12);
+        kamil.phone = new Phone("xiaomi","xiaomi",1231,111);
 
+        Application note = new Application("notatka",1,0);
+        kornik.phone.installApp(new Application("facebook",1,12),kornik);
+        kornik.phone.installApp(new Application("amazon",1,0),kornik);
+        kornik.phone.installApp(new Application("google",1,0),kornik);
+        kornik.phone.installApp(note,kornik);
 
-        Human kornik = new Human("Justyun","Bambo",123,2331,12333,8);
-        Human blaszak = new Human("kamil", "blasza",112,2222,222222,3);
-        LPGCar automobil = new LPGCar("kysz","adsada",1999, 20);
-        LPGCar automobil2 = new LPGCar("asiema","adsada",2002, 20);
-        LPGCar automobil3 = new LPGCar("szybka","adsada",2006, 20);
-        LPGCar automobil4 = new LPGCar("asieaddma","adsada",1902, 20);
-        LPGCar automobil5 = new LPGCar("asiddsssssssema","adsada",2, 20);
-        kornik.setCar(automobil,0);
-        kornik.setCar(automobil2,1);
-        kornik.setCar(automobil3,2);
-        kornik.setCar(automobil4,3);
-        kornik.setCar(automobil5,4);
-
-        kornik.getCar(1).sell(kornik,blaszak,230);
-
-        kornik.carsValue();
-        System.out.println(kornik);
-         kornik.sortYourGarage();
-        System.out.println(kornik);
-
-        blaszak.getCar(1).checkOwner(kornik);
-
-        blaszak.getCar(1).ifSoldAToB(kornik,blaszak);
-        blaszak.getCar(1).howManyTransactions();
-        blaszak.getCar(1).getOwner();
-
+        kornik.phone.getAppList();
+        kornik.phone.checkIfYouHaveApp(note);
+        kamil.phone.checkIfYouHaveApp(note);
+        kornik.phone.checkIfYouHaveApp("amazon");
+        kamil.phone.checkIfYouHaveApp("notatka");
+        kornik.phone.showFreeApps();
+        kornik.phone.appsPrice();
+        kornik.phone.sortAppsByName();
+        kornik.phone.sortAppsByPrice();
 
 
 
